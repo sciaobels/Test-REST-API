@@ -1,0 +1,9 @@
+.ingrandisci{
+    padding: 1%;
+    margin: 1%;
+}
+
+.ingrandisci:hover{
+    padding: 2%;
+    margin: 0%;
+}

@@ -1,0 +1,232 @@
+To link a button to a JavaScript function, you have a few clean options.
+
+✅ 1. Inline onclick (simplest)
+<button onclick="myFunction()">Click me</button>
+
+<script>
+function myFunction() {
+  alert("Button clicked!");
+}
+</script>
+✅ 2. Recommended way (addEventListener)
+
+This is the modern approach:
+
+<button id="myButton">Click me</button>
+
+<script>
+document.getElementById("myButton").addEventListener("click", function() {
+  alert("Button clicked!");
+});
+</script>
+✅ 3. With named function (cleaner structure)
+<button id="myButton">Click me</button>
+
+<script>
+function handleClick() {
+  alert("Hello!");
+}
+
+document.getElementById("myButton").addEventListener("click", handleClick);
+</script>
+🚀 Example with your REST API
+
+If you want your button to call your PHP API:
+
+<button id="loadBtn">Get Scuola</button>
+
+<p id="result"></p>
+
+<script>
+document.getElementById("loadBtn").addEventListener("click", async () => {
+  const response = await fetch("http://localhost/src/API/scuola");
+  const data = await response.json();
+
+  document.getElementById("result").innerText = data;
+});
+</script>
+🧠 Summary
+onclick → quick but outdated style
+addEventListener → best practice
+async + fetch → used for APIs
+
+If you want, I can show you how to build a full mini frontend (HTML + JS) that talks to your PHP API like a real app.
+
+Access to fetch at 'http://localhost/src/API/scuola' from origin 'http://127.0.0.1' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+That error is CORS, and it’s very common.
+
+🚨 What’s happening
+
+Your frontend is running on:
+
+http://127.0.0.1
+
+Your API is on:
+
+http://localhost/src/API/scuola
+
+Even though they look similar, the browser treats them as different origins:
+
+127.0.0.1 ❌
+localhost ❌
+
+So the browser blocks the request unless your PHP API explicitly allows it.
+
+✅ Fix (add CORS headers in PHP)
+
+At the very top of your PHP file (before any output):
+
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+⚠️ IMPORTANT (OPTIONS preflight fix)
+
+Some browsers send an OPTIONS request first. Handle it like this:
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+🚀 BEST PRACTICE (safer than *)
+
+Instead of allowing everyone:
+
+header("Access-Control-Allow-Origin: http://127.0.0.1");
+🧠 Why this happens
+
+Browsers enforce CORS because:
+
+JavaScript runs on one origin
+It tries to access another origin (your API)
+Server must explicitly allow it
+
+PHP does NOT allow cross-origin by default.
+
+🔥 Also fix your URL mismatch (important)
+
+You are mixing:
+
+127.0.0.1
+localhost
+
+Pick ONE.
+
+Best option:
+
+Use everywhere:
+
+http://127.0.0.1
+
+or everywhere:
+
+http://localhost
+
+Consistency avoids many CORS issues.
+
+✅ Final working setup
+PHP API
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+JS fetch
+fetch("http://127.0.0.1/src/API/scuola")
+  .then(res => res.json())
+  .then(data => console.log(data));
+If it STILL doesn’t work
+
+Tell me:
+
+your exact folder path in UniServerZ
+full URL you open in browser
+your PHP file location
+
+and I’ll fix it precisely for your setup.
+
+what does the content type header do
+
+The Content-Type header tells the client (browser, JavaScript, Postman, etc.) what kind of data is being sent in the response (or request body).
+
+Think of it as a label: “this is JSON”, “this is HTML”, “this is plain text”, etc.
+
+📦 In your PHP API
+header("Content-Type: application/json");
+
+This means:
+
+👉 “I am sending JSON data back”
+
+So when you do:
+
+echo json_encode(["name" => "John"]);
+
+the browser knows how to interpret it correctly.
+
+🧠 Why it matters
+1. Without it
+
+The browser may treat the response as:
+
+plain text
+HTML
+or guess incorrectly
+
+That can break fetch().json().
+
+2. With it
+Content-Type: application/json
+
+Now JavaScript safely does:
+
+const data = await response.json();
+
+Because it knows it's JSON.
+
+🌍 Common Content-Types
+Type	Meaning
+application/json	JSON data (APIs)
+text/html	HTML page
+text/plain	plain text
+application/xml	XML data
+multipart/form-data	file uploads
+application/x-www-form-urlencoded	HTML form data
+📤 It also matters for requests
+
+When sending data with fetch:
+
+fetch(url, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ name: "John" })
+});
+
+This tells PHP:
+
+👉 “I am sending JSON in the request body”
+
+So PHP can read it correctly:
+
+$data = json_decode(file_get_contents("php://input"), true);
+⚠️ Important rule
+
+If you don’t set Content-Type correctly:
+
+JS .json() may fail
+PHP may not read input correctly
+APIs behave inconsistently
+🧠 Simple summary
+Content-Type = format of the data
+Server → tells browser what it is sending
+Client → tells server what it is sending
+Essential for APIs to work properly
+
+If you want, I can show you a real request/response example step-by-step (like what actually travels over the network).

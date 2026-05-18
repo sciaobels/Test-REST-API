@@ -1,0 +1,90 @@
+dammi un elenco di scuse stupide per non aver fatto i compiti
+“Il cane ha mangiato i compiti… e poi ha vomitato solo le pagine dispari.”
+“Li avevo fatti, ma il vento ha aperto la finestra e sono volati nel traffico.”
+“Ho usato l’inchiostro simpatico e mi sono dimenticato come renderlo visibile.”
+“Mia nonna li ha usati per accendere il barbecue.”
+“Li avevo nello zaino, ma mio fratello li ha scambiati per origami.”
+“Il gatto si è seduto sulla tastiera e ha cancellato tutto.”
+“Avevo quasi finito, poi è andata via la luce… nel quartiere accanto.”
+“Li ho prestati a un amico… che oggi è assente.”
+“Ho confuso il quaderno di matematica con quello da disegno e li ho colorati tutti.”
+“Ero pronto a portarli, ma ho preso lo zaino sbagliato. Quello di mio cugino di 8 anni.”
+“La stampante ha deciso di scioperare per i diritti delle macchine.”
+“Li ho salvati sul computer, ma il computer ha deciso di aggiornarsi per 14 ore.”
+“Pensavo che oggi fosse domenica.”
+“Ho fatto i compiti mentalmente.”
+“Il mio pesce rosso ha rovesciato l’acqua sul quaderno.”
+“Li avevo finiti, poi ho scoperto che erano per la materia sbagliata.”
+“Un piccione ha centrato il foglio dal balcone.”
+“Sono stato rapito da una maratona di serie TV.”
+“Avevo iniziato, ma la penna ha smesso di funzionare e ho preso quello come un segno del destino.”
+“Ho lasciato il quaderno sul tetto della macchina. Ora probabilmente è in un’altra regione.”
+mettile in forma di array php
+$scuse = [
+    "Il cane ha mangiato i compiti… e poi ha vomitato solo le pagine dispari.",
+    "Li avevo fatti, ma il vento ha aperto la finestra e sono volati nel traffico.",
+    "Ho usato l’inchiostro simpatico e mi sono dimenticato come renderlo visibile.",
+    "Mia nonna li ha usati per accendere il barbecue.",
+    "Li avevo nello zaino, ma mio fratello li ha scambiati per origami.",
+    "Il gatto si è seduto sulla tastiera e ha cancellato tutto.",
+    "Avevo quasi finito, poi è andata via la luce… nel quartiere accanto.",
+    "Li ho prestati a un amico… che oggi è assente.",
+    "Ho confuso il quaderno di matematica con quello da disegno e li ho colorati tutti.",
+    "Ero pronto a portarli, ma ho preso lo zaino sbagliato. Quello di mio cugino di 8 anni.",
+    "La stampante ha deciso di scioperare per i diritti delle macchine.",
+    "Li ho salvati sul computer, ma il computer ha deciso di aggiornarsi per 14 ore.",
+    "Pensavo che oggi fosse domenica.",
+    "Ho fatto i compiti mentalmente.",
+    "Il mio pesce rosso ha rovesciato l’acqua sul quaderno.",
+    "Li avevo finiti, poi ho scoperto che erano per la materia sbagliata.",
+    "Un piccione ha centrato il foglio dal balcone.",
+    "Sono stato rapito da una maratona di serie TV.",
+    "Avevo iniziato, ma la penna ha smesso di funzionare e ho preso quello come un segno del destino.",
+    "Ho lasciato il quaderno sul tetto della macchina. Ora probabilmente è in un’altra regione."
+];
+stessa cosa con scuse per non andare a lavoro
+$scuseLavoro = [
+    "La mia sveglia ha deciso di aggiornarsi durante la notte.",
+    "Sono rimasto chiuso fuori casa… in pigiama.",
+    "La macchina non partiva, credo abbia bisogno di supporto emotivo.",
+    "Ho preso il bus sbagliato e ora non so più dove sono.",
+    "Il gatto dormiva sulle chiavi e non ho avuto il coraggio di svegliarlo.",
+    "C’è stato un incidente con il caffè e i pantaloni puliti rimasti erano discutibili.",
+    "Pensavo fosse sabato fino a 10 minuti fa.",
+    "Il navigatore mi ha mandato in un’altra città.",
+    "Ho dimenticato il portafoglio nel frigorifero e sono tornato a prenderlo.",
+    "Il mio vicino ha parcheggiato talmente vicino alla mia auto che non posso uscire.",
+    "Sono uscito in orario, ma poi ho visto il letto e abbiamo avuto un momento.",
+    "La moka è esplosa e ho dovuto gestire la scena del crimine.",
+    "Mi si è bloccata la porta del bagno.",
+    "Ho calpestato qualcosa di sospetto appena uscito di casa e ho dovuto cambiarmi.",
+    "Il cane ha nascosto una scarpa e stiamo ancora negoziando.",
+    "Ho avuto una crisi esistenziale davanti all’armadio.",
+    "Stamattina il traffico sembrava il finale di un film apocalittico.",
+    "Ho versato il latte sul laptop e lui non l’ha presa bene.",
+    "Mi sono addormentato sul divano 'solo cinque minuti'.",
+    "La mia pianta ha bisogno di supporto morale urgente."
+];
+stessa cosa con scuse per non uscire
+$scuseUscire = [
+    "Ho appena indossato il pigiama e non posso tradire questo impegno.",
+    "Il divano mi ha avvolto e non riesco a liberarmi.",
+    "Sta per arrivare un pacco importantissimo… da una settimana.",
+    "Ho già socializzato abbastanza oggi parlando con il frigorifero.",
+    "Fuori c’è un vento sospetto che giudica le mie scelte di vita.",
+    "Il mio telefono ha il 3% e devo stare con lui nei suoi ultimi momenti.",
+    "Ho promesso al mio letto che sarei rimasto fedele almeno per oggi.",
+    "Ho iniziato una serie TV e non posso abbandonare i personaggi nel momento difficile.",
+    "Sto aspettando che la mia motivazione torni a casa da sola.",
+    "Mi sono già preparato mentalmente per uscire… e per oggi basta così.",
+    "Il meteo mi ha guardato male e ho deciso di non rischiare.",
+    "Ho perso le chiavi e ora vivo qui per sicurezza.",
+    "Ho già fatto il massimo sforzo sociale rispondendo a un messaggio.",
+    "La mia batteria sociale è al 1% e non trova il caricatore.",
+    "Il letto oggi ha un’attrazione gravitazionale troppo forte.",
+    "Ho paura che fuori ci sia troppa realtà tutta insieme.",
+    "Sto lavorando su un progetto importante: non muovermi dal letto.",
+    "Ho appena ricordato tutte le cose imbarazzanti fatte negli ultimi 10 anni e devo riprendermi.",
+    "Il mio cane ha bisogno di supporto emotivo e non posso lasciarlo solo.",
+    "Ho già messo il cervello in modalità aereo."
+];
