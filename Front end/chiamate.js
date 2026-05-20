@@ -8,8 +8,8 @@ async function getScuola() {
     const data = await response.json();
 
     output.innerText = data;
-  } catch (error) {
-    console.error("Error:", error);
+  } catch (errore) {
+    console.error("Errore:", errore);
   }
 }
 
@@ -19,8 +19,8 @@ async function getLavoro() {
     const data = await response.json();
 
     output.innerText = data;
-  } catch (error) {
-    console.error("Error:", error);
+  } catch (errore) {
+    console.error("Errore:", errore);
   }
 }
 
@@ -30,7 +30,8 @@ async function getUscire() {
     const data = await response.json();
 
     output.innerText = data;
-  } catch (error) {
-    console.error("Error:", error);
+  } catch (errore) {
+    console.error("Errore:", errore);
   }
 }
+

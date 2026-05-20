@@ -79,17 +79,17 @@
 
     switch ($method) {
 
-        case 'GET':
+        case "GET":
 
-            if ($request == '/src/API/index.php/scuola') { //a causa di uniserver non basta la richiesta con /scuola
+            if ($request == "/src/API/index.php/scuola") { //a causa di uniserver non basta la richiesta con /scuola
 
-                $idScusa = array_rand($scuse[0]);
+                $idScusa = array_rand($scuse[0]); //sceglie una scusa a caso
                 $out = $scuse[0][$idScusa];
                 http_response_code(200);
-                echo json_encode($out);
+                echo json_encode($out); //invia la risposta
             }
 
-            if ($request == '/src/API/index.php/lavoro') {
+            else if ($request == "/src/API/index.php/lavoro") {
 
                 $idScusa = array_rand($scuse[1]);
                 $out = $scuse[1][$idScusa];
@@ -97,14 +97,90 @@
                 echo json_encode($out);
             }
 
-            if ($request == '/src/API/index.php/uscire') {
+            else if ($request == "/src/API/index.php/uscire") {
 
                 $idScusa = array_rand($scuse[2]);
                 $out = $scuse[2][$idScusa];
                 http_response_code(200);
                 echo json_encode($out);
             }
+            else{
+                http_response_code(404);
+
+                echo json_encode([
+                    "error" => "Not found"
+                ]);
+            }
             
+            break;
+        
+        case "POST":
+            if ($request == "/src/API/index.php/postCompiti") {
+                $data = json_decode(file_get_contents("php://input"), true); //prende il file json dal body della richiesta
+                if(!isset($data["text"])){
+                    http_response_code(400);
+                    echo json_encode([
+                        "error" => "Missing fields"
+                    ]);
+                }
+                else{
+
+                    $scusa = $data["text"];
+                    $scuse[0][] = $scusa;
+                    http_response_code(201);
+
+                    echo json_encode([
+                        "message" => "Scusa aggiunta",
+                        //"data" => $scuse[0]
+                    ]);
+                }
+            }
+            else if($request == "/src/API/index.php/postLavoro"){
+                $data = json_decode(file_get_contents("php://input"), true);
+                if(!isset($data["text"])){
+                    http_response_code(400);
+                    echo json_encode([
+                        "error" => "Missing fields"
+                    ]);
+                }
+                else{
+
+                    $scusa = $data["text"];
+                    $scuse[1][] = $scusa;
+                    http_response_code(201);
+
+                    echo json_encode([
+                        "message" => "Scusa aggiunta"
+                    ]);
+                }
+            }
+            else if ($request == "/src/API/index.php/postUscire"){
+                $data = json_decode(file_get_contents("php://input"), true);
+                if(!isset($data["text"])){
+                    http_response_code(400);
+                    echo json_encode([
+                        "error" => "Missing fields"
+                    ]);
+                }
+                else{
+
+                    $scusa = $data["text"];
+                    $scuse[2][] = $scusa;
+                    http_response_code(201);
+
+                    echo json_encode([
+                        "message" => "Scusa aggiunta",
+                    ]);
+                }
+            }
+            else{
+                http_response_code(404);
+
+                echo json_encode([
+                    "error" => "Not found"
+                ]);
+            }
+
             break;
 
         default:
